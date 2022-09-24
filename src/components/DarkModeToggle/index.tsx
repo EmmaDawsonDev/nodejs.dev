@@ -28,6 +28,7 @@ const DarkModeToggle = () => {
       className={styles.darkModeToggle}
       onClick={() => handleThemeOnClick()}
       onKeyPress={() => handleThemeOnClick(true)}
+      aria-pressed={theme === 'dark' ? true : false}
     >
       <span className="sr-only">Toggle Dark Mode</span>
       <ModeNightIcon className="light-mode-only" />

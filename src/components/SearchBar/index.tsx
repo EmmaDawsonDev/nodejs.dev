@@ -128,12 +128,11 @@ const SearchBar = (): JSX.Element => {
         role="presentation"
       >
         <TravelExploreIcon className={styles.searchIcon} />
-        <label htmlFor="searchInput">
-          <span>
-            {!isExpanded && (
-              <FormattedMessage id="components.searchBar.placeholder" />
-            )}
-          </span>
+        <label htmlFor="searchInput" aria-label="Search">
+          {!isExpanded && (
+            <FormattedMessage id="components.searchBar.placeholder" />
+          )}
+
           <input
             ref={searchInputRef}
             autoComplete="off"

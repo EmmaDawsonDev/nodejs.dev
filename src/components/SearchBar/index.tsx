@@ -148,15 +148,20 @@ const SearchBar = (): JSX.Element => {
         </label>
         <AnimatePresence>
           {isExpanded && (
-            <MotionCloseIcon
-              className={styles.closeIcon}
-              key="close-icon"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+            <button
               onClick={collapseContainer}
-              transition={{ duration: 0.2 }}
-            />
+              aria-label="close search"
+              className={styles.closeIconButton}
+            >
+              <MotionCloseIcon
+                className={styles.closeIcon}
+                key="close-icon"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              />
+            </button>
           )}
         </AnimatePresence>
       </div>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Tabs, TabList } from 'react-tabs';
 import { NodeReleaseData } from '../../../types';
 import { ReactComponent as AppleLogo } from '../../../images/logos/apple-logo.svg';
 import { ReactComponent as MicrosoftLogo } from '../../../images/logos/microsoft-download-logo.svg';
@@ -50,38 +49,8 @@ const DownloadCards = ({ line, userOS }: Props): JSX.Element => {
   ];
 
   return (
-    <Tabs tabIndex={-1} className={styles.downloadCardsWrapper}>
-      <TabList
-        className={styles.downloadCards}
-        role="tablist"
-        onKeyDown={(e: React.KeyboardEvent): void => {
-          const currentIndex = downloadTypes.findIndex(
-            d => d.name === selected
-          );
-
-          let direction = null;
-
-          if (e.key === 'ArrowLeft') {
-            direction = 'left';
-          } else if (e.key === 'ArrowRight') {
-            direction = 'right';
-          }
-
-          if (!direction) return;
-
-          let nextIndex = currentIndex;
-          nextIndex += direction === 'left' ? -1 : 1;
-
-          if (nextIndex < 0) {
-            nextIndex = downloadTypes.length - 1;
-          } else if (nextIndex >= downloadTypes.length) {
-            nextIndex = 0;
-          }
-
-          const nextItem = downloadTypes[nextIndex].name;
-          setSelected(nextItem);
-        }}
-      >
+    <div className={styles.downloadCardsWrapper}>
+      <ul className={styles.downloadCards} role="group">
         {downloadTypes.map(
           (os): JSX.Element => (
             <DownloadCard
@@ -96,8 +65,8 @@ const DownloadCards = ({ line, userOS }: Props): JSX.Element => {
             />
           )
         )}
-      </TabList>
-    </Tabs>
+      </ul>
+    </div>
   );
 };
 

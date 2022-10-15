@@ -1,5 +1,4 @@
 import React from 'react';
-import { Tab } from 'react-tabs';
 import GetAppIcon from '@mui/icons-material/GetApp';
 import classnames from 'classnames';
 import styles from './index.module.scss';
@@ -28,26 +27,35 @@ const DownloadCard = ({
     [styles.downloadCardActive]: selected,
   });
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLLIElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      handleSelectCard();
+    }
+  };
+
   return (
-    <Tab
+    <li
       className={classNames}
       id={`download-card-${name}`}
       key={name}
       onClick={handleSelectCard}
-      selectedClassName={styles.downloadCardActive}
-      tabIndex="0"
+      onKeyDown={handleKeyPress}
+      tabIndex={0}
+      aria-label={`${label} ${fileName}`}
+      aria-current={selected}
     >
       <div className={styles.top}>
         <Icon className={styles.image} />
+
         {selected && (
-          <a className={styles.link} href={download}>
+          <a className={styles.link} href={download} aria-label="Download">
             <GetAppIcon />
           </a>
         )}
       </div>
       <p className={styles.label}>{label}</p>
       <p className={styles.filename}>{fileName}</p>
-    </Tab>
+    </li>
   );
 };
 
